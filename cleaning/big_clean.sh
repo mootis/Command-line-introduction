@@ -11,8 +11,17 @@
 # find . -type f 'DELETE ME!' -exec echo rm -f {} \;
 
 # This one seems to work kinda - lists all files containing string 'DELETE ME!'
-# find . -type f -exec fgrep -l 'DELETE ME!' {} \;
-# Trimmed version of above command with remove - parsed incorrectly
- rm `grep -l 'DELETE ME!' {} \;`
+ find . -type f -exec fgrep -l 'DELETE ME!' {} \; -exec rm {} +
 
-# fgrep -l 'DELETE ME!' {} \;
+ # Used this to test that if files were actually deleted (they didn't show up, so yay! :D )
+ #find . -type f -exec fgrep -l 'DELETE ME!' {} \; -exec ls {} +
+
+# Trimmed version of above command with remove - Doesn't work, but kept in 'cause it might help in the future
+# rm `grep -l 'DELETE ME!' {} \;`
+
+#Enter scratch directory
+here=$(pwd)
+cd $SCRATCH
+
+# Creating new compressed tar
+ tar -zcvf cleaned_little_dir.tgz $here 
