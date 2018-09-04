@@ -24,4 +24,7 @@ here=$(pwd)
 cd $SCRATCH
 
 # Creating new compressed tar
- tar -zcvf cleaned_little_dir.tgz $here 
+ tar -zcf cleaned_little_dir.tgz $(pwd)
+
+# Moving tar file out of scratch
+ mv /cleaned_little_dir.tgz /cleaning
