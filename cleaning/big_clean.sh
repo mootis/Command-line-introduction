@@ -1,9 +1,13 @@
 #!/bin/bash
+archive=$1
+directory=$2 #these are so people can read the code below with better ease
 
 # Extracts contents of the tar archive to a specified directory
  tar -xzf $1 -C $2
 
-# unsure of any deeper directory needed here
+ here=$(pwd)
+
+ # unsure of any deeper directory needed here
  cd $2
 
 # find . -type f 'DELETE ME!' -exec echo rm -f {} \;
@@ -18,13 +22,11 @@
 # Trimmed version of above command with remove - Doesn't work, but kept in 'cause it might help in future projects
 # rm `grep -l 'DELETE ME!' {} \;`
 
-#Enter scratch directory
-here=$(pwd)
-cd $SCRATCH
+
 
 # Creating new compressed tar
 # tar -zcf cleaned_little_dir.tgz $here
- tar -zcf /../cleaned_little_dir.tgz $here
+ tar -zcf cleaned_$1 $here
 
 # "Moving" tar file out of scratch
 #  rm -f ./
