@@ -1,16 +1,13 @@
 #!/bin/bash
 archive=$1
-directory=$2 #these are so people can read the code below with better ease
+dir=$2 #these are so people can read the code below with better ease
+
+here=$(pwd)
 
 # Extracts contents of the tar archive to a specified directory
  tar -xzf $1 -C $2
 
- here=$(pwd)
-
- # unsure of any deeper directory needed here
- cd $2
-
-# find . -type f 'DELETE ME!' -exec echo rm -f {} \;
+ cd $dir
 
 # This one seems to work kinda - lists all files containing string 'DELETE ME!'
 # Adding the stuff after the first ';' is what deletes everything
@@ -22,12 +19,12 @@ directory=$2 #these are so people can read the code below with better ease
 # Trimmed version of above command with remove - Doesn't work, but kept in 'cause it might help in future projects
 # rm `grep -l 'DELETE ME!' {} \;`
 
-
+archive_name=$(basename $archive ".tgz")
 
 # Creating new compressed tar
 # tar -zcf cleaned_little_dir.tgz $here
- tar -zcf cleaned_$1 $here
+ tar -zcf cleaned_$archive $archive_name
 
-# "Moving" tar file out of scratch
-#  rm -f ./
+ mv cleaned_$archive $here
 
+ #Ethan and Nick Pluck helped greatly with letting me know why it wasn't working before and ideas on how to fix it
